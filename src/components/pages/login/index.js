@@ -6,17 +6,19 @@ import { connect } from 'react-redux'
 import {Input, Button} from 'antd'
 import './index.css';
 
+import {actionCreators} from './store'
 
 class Login extends React.Component {
 
-
     constructor(props){
         super(props);
-        this.state ={
-            username:"",
-            password:"",
-            requesting:false
-        }
+        // this.state ={
+        //     username:"",
+        //     password:"",
+        //     requesting:false
+        // }
+
+
     }
 
 
@@ -25,6 +27,8 @@ class Login extends React.Component {
         this.props.history.push('/register')
     }
     render(){
+        // console.log(this.props)
+        // console.log(';;;;;;;;;;')
         return (
             <div id="loginDIV" style={{ backgroundColor:'red' }}>
 
@@ -47,6 +51,7 @@ class Login extends React.Component {
                             {/*登录*/}
                         {/*</button>*/}
                         <Button type="primary"  >登录</Button>
+                        {/* 箭头函数绑定最外层的this  就是window */}
                         <Button type="primary" style={{marginLeft:'55%'}} onClick={ () => {this.handleRegister()} }>注册</Button>
 
                     </form>
@@ -56,10 +61,39 @@ class Login extends React.Component {
         );
     }
 
-
-
 }
 
 
-export default connect(null,null)(Login)
+//映射到props中
+// function mapStateToProps(state){
+//     console.log(state.login)
+//     // console.log(state.token)
+//     console.log('‘’‘’')
+//     // return {data:state}
+//
+//
+//     return state;
+// }
+
+const mapStateToProps = (state)=>{
+    console.log(state)
+    console.log(state.login)
+    return state;
+}
+
+
+
+//函数映射到props中
+function mapDispatchToProps(dispatch){
+    return {
+        login(username, password) {
+            dispatch(actionCreators.login(username, password))
+        }
+    }
+}
+
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);
 
