@@ -19,6 +19,8 @@ class Login extends React.Component {
         }
 
         this.handleSubmit.bind(this)
+        this.login.bind(this)
+
     }
 
 
@@ -26,7 +28,9 @@ class Login extends React.Component {
         console.log(e)
     }
 
-
+    login(){
+        this.props.login('admin','admin')
+    }
 
     handleRegister(){
         console.log( this.props)
@@ -59,7 +63,7 @@ class Login extends React.Component {
                                 {/*type="submit" disabled={this.state.requesting}>*/}
                             {/*登录*/}
                         {/*</button>*/}
-                        <Button type="primary"  htmlType="submit" >登录</Button>
+                        <Button type="primary"  onClick={ ()=> this.login() } >登录</Button>
                         {/* 箭头函数绑定最外层的this  就是window */}
                         <Button type="primary" style={{marginLeft:'55%'}} onClick={ () => {this.handleRegister()} }>注册</Button>
 
@@ -88,9 +92,9 @@ const mapStateToProps = (state)=>{
     // console.log(state.get('token'))
     // console.log(state.login)
     // console.log(state._root.entries[0][1])
-    console.log(state.getIn(['login']).token)
-
-    
+    // console.log(state.getIn(['login']).token)
+    console.log(state)
+    console.log('123')
 
     // return state;
     return {

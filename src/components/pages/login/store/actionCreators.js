@@ -22,7 +22,7 @@ export const login = (username, password) =>{
     return (dispatch) =>{
 
         if(username==='admin' && password === 'admin' ){
-            let token = '213456787654321';
+            let token = '22222222';
             dispatch(changeLogin(token))
         }
     }

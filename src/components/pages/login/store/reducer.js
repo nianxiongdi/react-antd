@@ -12,9 +12,13 @@ export default (state=initState, action) => {
     // console.log(state)
     // console.log(action.type)
     switch (action.type){
+        //登录
         case "CHANGE_LOGIN":
             console.log(action)
-            return state;
+
+            const newState = JSON.parse(JSON.stringify(state));
+            newState.token = action.value.token
+            return newState;
         default:
             console.log('--default--')
             return state;
